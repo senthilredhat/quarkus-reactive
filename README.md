@@ -1,6 +1,6 @@
 # Reactive Orders project demo
 
-in progress demo for reactive orders 
+in progress demo for reactive GRPC + REST order service 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
