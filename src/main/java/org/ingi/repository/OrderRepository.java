@@ -21,11 +21,7 @@ public class OrderRepository implements PanacheRepository<Order> {
 
     public Uni<String> getLastOrderNumber(String customerId){
         return find("customerId","ORDER by creation_time DESC",customerId).firstResult()
-                .onItem().ifNotNull().transform(o-> {
-                    return o.getOrderNumber();
-                } )
-                .onItem().ifNull().continueWith(() ->{
-                    return "0";
-                });
+                .onItem().ifNotNull().transform(o-> o.getOrderNumber())
+                .onItem().ifNull().continueWith(() -> null);
     }
 }

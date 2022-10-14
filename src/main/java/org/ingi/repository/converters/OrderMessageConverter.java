@@ -3,6 +3,9 @@ package org.ingi.repository.converters;
 import org.ingi.repository.models.Order;
 import org.ingi.proto.*;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.Random;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.stream.Collectors;
@@ -10,7 +13,10 @@ import java.util.stream.Collectors;
 /**
  * Converter for orders grpc models -from GRPC to domain model
  */
+@ApplicationScoped
 public class OrderMessageConverter {
+
+    private final static Random rand = new Random();
 
     private OrderMessageConverter() {
     }
@@ -41,17 +47,20 @@ public class OrderMessageConverter {
             return null;
         }
 
-        return new Order()
+        var orderDataModel = new Order()
                 .setCustomer(source.getCustomer())
                 .setCreationTime(OffsetDateTime.now(ZoneOffset.UTC))
                 .setCost(source.getCost())
                 .setStatus(source.getStatus().getNumber())
                 .setCustomerId(customerId)
-                .setOrderItems(
-                        source.getItemsList().stream()
-                                .map(OrderItemMessageConverter::toOrderItem)
-                                .collect(Collectors.toList())
-                );
+                .setOrderNumber(String.valueOf(rand.nextInt(100000)));
+
+        var orderItemDataModels = source.getItemsList().stream()
+                .map(x -> OrderItemMessageConverter.toOrderItem(x, orderDataModel))
+                .collect(Collectors.toList());
+        orderDataModel.setOrderItems(orderItemDataModels);
+
+        return orderDataModel;
     }
 
     /**

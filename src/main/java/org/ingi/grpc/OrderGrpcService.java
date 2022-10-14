@@ -17,11 +17,6 @@ public class OrderGrpcService extends MutinyOrderGrpc.OrderImplBase{
     public Uni<CreateOrderResponseMessage> createOrder(CreateOrderRequestMessage request) {
         System.out.println(request);
         var order = OrderMessageConverter.toOrder(request.getOrder(), request.getCustomerId());
-//        var o = this.orderService.create(order);
-//        var createdOrder = CreateOrderResponseMessage.newBuilder()
-//                .setOrderNumber()
-//                .build();
-
         System.out.println("2nd" + order.getCustomer());
         return this.orderService.create(order)
                 .map(o -> {

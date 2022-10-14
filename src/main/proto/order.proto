@@ -31,6 +31,7 @@ message CreateOrderRequestMessage {
 
 // The response message when creating an order
 message CreateOrderResponseMessage {
+
   string order_number = 1;
 }
 

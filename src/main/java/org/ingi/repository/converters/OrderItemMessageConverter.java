@@ -1,5 +1,5 @@
 package org.ingi.repository.converters;
-
+import org.ingi.repository.models.Order;
 import org.ingi.repository.models.OrderItem;
 import org.ingi.proto.*;
 
@@ -16,17 +16,25 @@ public class OrderItemMessageConverter {
      * @param source the OrderItem grpc model
      * @return the OrderItem model
      */
-    public static OrderItem toOrderItem(OrderItemMessage source) {
+    public static OrderItem toOrderItem(OrderItemMessage source, Order order) {
         if (source == null) {
             return null;
         }
         return new OrderItem()
+                .setOrder(order)
                 .setQuantity(source.getQuantity())
                 .setSkuId(source.getSkuId())
                 .setName(source.getName())
                 .setCost(source.getCost())
                 .setType(source.getType());
     }
+
+//    public static OrderItem toOrderItem(OrderItemMessage source, Order order) {
+//        if (source == null) {
+//            return null;
+//        }
+//        return toOrderItem(source).setOrder(order);
+//    }
 
     /**
      * Converts a OrderItem domain model to an OrderItem grpc model
