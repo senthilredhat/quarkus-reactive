@@ -18,9 +18,7 @@ public class OrderService {
 
     @ReactiveTransactional
     public Uni<Order> create(Order order){
-        System.out.println("service" + order.getOrderNumber());
-        System.out.println(order.getOrderItems());
-
+        Log.info(Thread.currentThread().getName());
         return this.orderRepository.persist(order)
                 .onFailure(PersistenceException.class)
                 .recoverWithItem(ex -> {

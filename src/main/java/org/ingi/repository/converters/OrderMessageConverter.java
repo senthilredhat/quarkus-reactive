@@ -59,7 +59,7 @@ public class OrderMessageConverter {
                 .map(x -> OrderItemMessageConverter.toOrderItem(x, orderDataModel))
                 .collect(Collectors.toList());
         orderDataModel.setOrderItems(orderItemDataModels);
-
+        System.out.println(Thread.currentThread().getName()) ;
         return orderDataModel;
     }
 
