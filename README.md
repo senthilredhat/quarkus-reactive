@@ -1,4 +1,6 @@
-# reactiveorders Project
+# Reactive Orders project demo
+
+in progress demo for reactive orders 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 

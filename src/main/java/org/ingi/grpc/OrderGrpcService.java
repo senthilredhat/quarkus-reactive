@@ -23,7 +23,7 @@ public class OrderGrpcService extends MutinyOrderGrpc.OrderImplBase{
                     System.out.println("4nd" + o);
                     var createdOrder = CreateOrderResponseMessage
                             .newBuilder()
-                            .setOrderNumber(o.getOrderNumber()).build();
+                            .setOrderNumber("thanks for your order "+ o.getCustomer()+ " " +o.getOrderNumber()).build();
                     System.out.println("3nd" + createdOrder);
                     return createdOrder;
                 });
