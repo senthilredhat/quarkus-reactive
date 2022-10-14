@@ -22,12 +22,14 @@ public class OrderGrpcService extends MutinyOrderGrpc.OrderImplBase{
 //                .setOrderNumber()
 //                .build();
 
-//        System.out.println("2nd" + order.getCustomer());
+        System.out.println("2nd" + order.getCustomer());
         return this.orderService.create(order)
                 .map(o -> {
+                    System.out.println("4nd" + o);
                     var createdOrder = CreateOrderResponseMessage
                             .newBuilder()
                             .setOrderNumber(o.getOrderNumber()).build();
+                    System.out.println("3nd" + createdOrder);
                     return createdOrder;
                 });
 
