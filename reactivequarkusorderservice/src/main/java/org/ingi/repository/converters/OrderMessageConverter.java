@@ -32,7 +32,7 @@ public class OrderMessageConverter {
             return null;
         }
         var orderMessageBuilder = CreateOrderResponseMessage.newBuilder()
-                .setOrderNumber(source.getOrderNumber());
+                .setGenericOrderResponse(source.getOrderNumber());
         return orderMessageBuilder.build();
     }
 
