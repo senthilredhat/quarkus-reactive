@@ -16,6 +16,8 @@ service Order {
   // Creates an order and returns the new order's id
   rpc CreateOrder (CreateOrderRequestMessage) returns (CreateOrderResponseMessage) {};
 
+  // DeletesOrder
+  rpc DeleteOrder (GetOrderByNumberRequestMessage) returns (CreateOrderResponseMessage) {};
   // Gets an order by order number
   rpc GetOrderByNumber(GetOrderByNumberRequestMessage) returns (OrderResponseMessage){};
 
