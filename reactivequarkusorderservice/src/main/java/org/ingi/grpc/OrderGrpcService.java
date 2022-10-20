@@ -1,16 +1,23 @@
 package org.ingi.grpc;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.protobuf.Empty;
 import io.quarkus.grpc.GrpcService;
 import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Uni;
 import org.ingi.OrderService;
 import org.ingi.proto.*;
-
+import io.debezium.outbox.quarkus.ExportedEvent;
+import org.ingi.debezium.OrderCreatedEvent;
 import org.ingi.repository.converters.OrderMessageConverter;
+
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 
 @GrpcService
 public class OrderGrpcService extends MutinyOrderGrpc.OrderImplBase{
     OrderService orderService;
+//    @Inject
+//    Event<ExportedEvent<String, JsonNode>> event;
     public OrderGrpcService(OrderService orderService){
         this.orderService=orderService;
     }
@@ -24,6 +31,7 @@ public class OrderGrpcService extends MutinyOrderGrpc.OrderImplBase{
                             .setGenericOrderResponse("thanks for your order "+ o.getCustomer()+ " " +o.getId() + " " +o.getOrderNumber()).build();
                     return createdOrder;
                 });
+
 
     }
 

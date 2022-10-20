@@ -10,12 +10,12 @@ repositories {
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-//    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-debezium-bom:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-debezium-bom:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-reactive'
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
     implementation 'io.quarkus:quarkus-grpc'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
-//    implementation 'io.debezium:debezium-quarkus-outbox'
+    implementation 'io.debezium:debezium-quarkus-outbox'
     implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-smallrye-reactive-messaging-kafka'
     implementation 'io.quarkus:quarkus-reactive-pg-client'
