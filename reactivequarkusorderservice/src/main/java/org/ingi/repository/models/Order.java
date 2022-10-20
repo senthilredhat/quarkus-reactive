@@ -133,5 +133,9 @@ public class Order {
                 && Objects.deepEquals(orderItems, that.orderItems);
     }
 
+    @Override
+    public String toString() {
+        return "Order{" + "id=" + id + ", orderNumber='" + orderNumber + '\'' + ", customerId='" + customerId + '\'' + ", customer='" + customer + '\'' + ", status=" + status + ", cost=" + cost + ", creationTime=" + creationTime + ", orderItems=" + orderItems + '}';
+        }
 
 }

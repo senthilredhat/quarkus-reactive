@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.debezium.outbox.quarkus.ExportedEvent;
 import org.ingi.repository.models.Order;
 import org.ingi.repository.models.OrderItem;
+import org.jboss.logging.Logger;
 
 import java.time.Instant;
 
@@ -49,6 +50,7 @@ public class OrderCreatedEvent implements ExportedEvent<String, JsonNode> {
     }
 
     public static OrderCreatedEvent of(Order order) {
+        Logger.getLogger(OrderCreatedEvent.class).infof("Creating OrderCreatedEvent for Order: %s", order);
         ObjectNode asJson = mapper.createObjectNode()
                 .put("orderNumber", order.getOrderNumber())
                 .put("customer", order.getCustomer())
