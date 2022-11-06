@@ -10,15 +10,23 @@ repositories {
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-debezium-bom:${quarkusPlatformVersion}")
+//    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-cdc-bom:${quarkusPlatformVersion}")
+    //these were for reactive db operations, but fell through because of cdc.. maybe another way to do ?
+    implementation('io.debezium:debezium-quarkus-outbox-reactive:2.1.0-SNAPSHOT')
+
     implementation 'io.quarkus:quarkus-hibernate-reactive'
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
+    implementation 'io.quarkus:quarkus-reactive-pg-client'
+    //non reactive db operations
+//    implementation("io.quarkus:quarkus-jdbc-postgresql")
+
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
     implementation 'io.quarkus:quarkus-grpc'
-    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
-    implementation 'io.debezium:debezium-quarkus-outbox'
+
+//    implementation 'io.cdc:cdc-quarkus-outbox'
     implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-smallrye-reactive-messaging-kafka'
-    implementation 'io.quarkus:quarkus-reactive-pg-client'
+
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'

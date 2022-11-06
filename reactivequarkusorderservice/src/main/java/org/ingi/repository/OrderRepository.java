@@ -6,8 +6,8 @@ import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Uni;
 import org.ingi.proto.CreateOrderResponseMessage;
 import org.ingi.repository.models.Order;
+
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.core.Response;
 

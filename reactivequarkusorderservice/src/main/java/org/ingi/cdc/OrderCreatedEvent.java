@@ -1,4 +1,4 @@
-package org.ingi.debezium;
+package org.ingi.cdc;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -10,7 +10,7 @@ import org.jboss.logging.Logger;
 
 import java.time.Instant;
 
-public class OrderCreatedEvent implements ExportedEvent<String, JsonNode> {
+public class OrderCreatedEvent implements ExportedEvent{
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -44,13 +44,13 @@ public class OrderCreatedEvent implements ExportedEvent<String, JsonNode> {
         return "OrderCreated";
     }
 
-    @Override
     public Instant getTimestamp() {
         return timestamp;
     }
 
     public static OrderCreatedEvent of(Order order) {
         Logger.getLogger(OrderCreatedEvent.class).infof("Creating OrderCreatedEvent for Order: %s", order);
+
         ObjectNode asJson = mapper.createObjectNode()
                 .put("orderNumber", order.getOrderNumber())
                 .put("customer", order.getCustomer())
