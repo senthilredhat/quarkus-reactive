@@ -39,14 +39,16 @@ public class OrderService {
 //                .runSubscriptionOn(Infrastructure.getDefaultWorkerPool());
 
 //            Log.info(Thread.currentThread().getName());
-        try{event.fire(OrderCreatedEvent.of(order));}finally {
+//        try{event.fire(OrderCreatedEvent.of(order));}finally {
+//            return this.orderRepository.persistAndFlush(order);
+//        }
+        var hello = Uni.createFrom().completionStage(
+                event.fireAsync(OrderCreatedEvent.of(order)));
 
-        }
-        event.fire(OrderCreatedEvent.of(order));
+        //return this.orderRepository.persistAndFlush(order);
 
-//        return this.orderRepository.persistAndFlush(order);
         return this.orderRepository.persistAndFlush(order)
-                .invoke(()->event.fire(OrderCreatedEvent.of(order)));
+               .invoke(()->event.fireAsync(OrderCreatedEvent.of(order)));
 //            return Panache.withTransaction(() -> this.orderRepository.persist(order))
 //                    .invoke(()->event.fire(OrderCreatedEvent.of(order)));
 
