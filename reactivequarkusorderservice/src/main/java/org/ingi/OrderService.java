@@ -8,6 +8,7 @@ import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactiona
 import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.infrastructure.Infrastructure;
+import org.hibernate.reactive.mutiny.Mutiny;
 import org.ingi.repository.OrderRepository;
 import org.ingi.repository.models.Order;
 import org.ingi.cdc.OrderCreatedEvent;
@@ -24,6 +25,8 @@ import io.debezium.outbox.quarkus.ExportedEvent;
 public class OrderService {
     @Inject
     DebeziumOutboxHandler handler;
+    @Inject
+    Mutiny.SessionFactory sf;
     OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository){
@@ -33,7 +36,12 @@ public class OrderService {
     @ReactiveTransactional
     public Uni<Order> create(Order order){
         Log.info(Thread.currentThread().getName());
-        return handler.persistToOutbox(OrderCreatedEvent.of(order)).chain(()->this.orderRepository.persistAndFlush(order));
+//        return sf.withTransaction(
+//                session -> this.orderRepository.persistAndFlush(order)
+//                        .call(() -> handler.persistToOutbox(OrderCreatedEvent.of(order)))
+//                );
+        return this.orderRepository.persistAndFlush(order)
+                .call(() -> handler.persistToOutbox(OrderCreatedEvent.of(order)));
     }
     @ReactiveTransactional
     public Uni<Integer> cancel(String id){
