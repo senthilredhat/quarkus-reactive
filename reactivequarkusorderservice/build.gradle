@@ -6,20 +6,23 @@ plugins {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven{
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
 }
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 //    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-cdc-bom:${quarkusPlatformVersion}")
     //these were for reactive db operations, but fell through because of cdc.. maybe another way to do ?
-    implementation('io.debezium:debezium-quarkus-outbox-reactive:2.1.0-SNAPSHOT')
+    implementation('io.debezium:debezium-quarkus-outbox-reactive:2.2.0-SNAPSHOT')
 
     implementation 'io.quarkus:quarkus-hibernate-reactive'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
     implementation 'io.quarkus:quarkus-reactive-pg-client'
     //non reactive db operations
 //    implementation("io.quarkus:quarkus-jdbc-postgresql")
-
+    implementation("io.quarkus:quarkus-narayana-jta")
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
     implementation 'io.quarkus:quarkus-grpc'
 
@@ -35,10 +38,10 @@ dependencies {
 group 'org.ingi'
 version '1.0'
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_17
+//    targetCompatibility = JavaVersion.VERSION_17
+//}
 
 compileJava {
     options.encoding = 'UTF-8'
