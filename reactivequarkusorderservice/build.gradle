@@ -16,6 +16,7 @@ dependencies {
 //    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-cdc-bom:${quarkusPlatformVersion}")
     //these were for reactive db operations, but fell through because of cdc.. maybe another way to do ?
     implementation('io.debezium:debezium-quarkus-outbox-reactive:2.2.0-SNAPSHOT')
+    implementation('io.quarkiverse.vault:quarkus-vault:3.0.0-SNAPSHOT')
 
     implementation 'io.quarkus:quarkus-hibernate-reactive'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache'

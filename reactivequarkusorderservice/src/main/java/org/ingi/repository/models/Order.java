@@ -3,7 +3,7 @@ package org.ingi.repository.models;
 import io.smallrye.mutiny.Uni;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;

@@ -3,12 +3,14 @@ package org.ingi;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.core.Vertx;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
-    @Path("/hello")
+@Path("/hello")
     public class GreetingResource {
         long blockTime=500;
 

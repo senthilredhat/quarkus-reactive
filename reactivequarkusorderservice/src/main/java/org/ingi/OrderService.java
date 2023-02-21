@@ -8,16 +8,14 @@ import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactiona
 import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.infrastructure.Infrastructure;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.hibernate.reactive.mutiny.Mutiny;
 import org.ingi.repository.OrderRepository;
 import org.ingi.repository.models.Order;
 import org.ingi.cdc.OrderCreatedEvent;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Event;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+
 import java.util.Objects;
 import java.util.UUID;
 import io.debezium.outbox.quarkus.ExportedEvent;

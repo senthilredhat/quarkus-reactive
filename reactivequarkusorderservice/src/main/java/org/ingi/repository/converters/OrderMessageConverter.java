@@ -1,10 +1,10 @@
 package org.ingi.repository.converters;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.ingi.repository.models.Order;
 import org.ingi.proto.*;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+
 import java.util.Random;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
