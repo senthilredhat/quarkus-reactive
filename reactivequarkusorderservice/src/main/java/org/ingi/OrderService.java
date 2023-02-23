@@ -30,8 +30,8 @@ public class OrderService {
 //    DebeziumOutboxHandler handler;
     @Inject @Shared
     VaultClient client;
-    @Inject
-    Mutiny.SessionFactory sf;
+//    @Inject
+//    Mutiny.SessionFactory sf;
     OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository){
