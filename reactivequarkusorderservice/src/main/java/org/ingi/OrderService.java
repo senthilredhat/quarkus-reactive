@@ -1,7 +1,7 @@
 package org.ingi;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.debezium.outbox.reactive.quarkus.internal.DebeziumOutboxHandler;
+//import io.debezium.outbox.reactive.quarkus.internal.DebeziumOutboxHandler;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
@@ -13,19 +13,19 @@ import jakarta.inject.Inject;
 import org.hibernate.reactive.mutiny.Mutiny;
 import org.ingi.repository.OrderRepository;
 import org.ingi.repository.models.Order;
-import org.ingi.cdc.OrderCreatedEvent;
+//import org.ingi.cdc.OrderCreatedEvent;
 
 
 import java.util.Objects;
 import java.util.UUID;
-import io.debezium.outbox.quarkus.ExportedEvent;
+//import io.debezium.outbox.quarkus.ExportedEvent;
 import io.quarkus.narayana.jta.QuarkusTransaction;
 import io.quarkus.narayana.jta.RunOptions;
 
 @ApplicationScoped
 public class OrderService {
-    @Inject
-    DebeziumOutboxHandler handler;
+//    @Inject
+//    DebeziumOutboxHandler handler;
     @Inject
     Mutiny.SessionFactory sf;
     OrderRepository orderRepository;
@@ -37,9 +37,9 @@ public class OrderService {
     @ReactiveTransactional
     public Uni<Order> create(Order order){
         Log.info(Thread.currentThread().getName());
-        return this.orderRepository.persistAndFlush(order)
+        return this.orderRepository.persistAndFlush(order);
 //                .invoke(()->this.beginExample(order));
-                .call(() -> handler.persistToOutbox(OrderCreatedEvent.of(order)));
+//                .call(() -> handler.persistToOutbox(OrderCreatedEvent.of(order)));
     }
 
     public void beginExample(Order order) {
