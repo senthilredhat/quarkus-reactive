@@ -6,6 +6,8 @@ import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
 import io.quarkus.logging.Log;
+import io.quarkus.vault.runtime.client.Shared;
+import io.quarkus.vault.runtime.client.VaultClient;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.infrastructure.Infrastructure;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -26,6 +28,8 @@ import io.quarkus.narayana.jta.RunOptions;
 public class OrderService {
 //    @Inject
 //    DebeziumOutboxHandler handler;
+    @Inject @Shared
+    VaultClient client;
     @Inject
     Mutiny.SessionFactory sf;
     OrderRepository orderRepository;
