@@ -8,30 +8,28 @@ repositories {
     mavenLocal()
     maven{
         url 'https://oss.sonatype.org/content/repositories/snapshots'
-    }
+        }
+    maven { url '/home/ifjolla/.m2/repository/io/quarkiverse/vault/' }
 }
 
 dependencies {
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-//    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-cdc-bom:${quarkusPlatformVersion}")
-    //these were for reactive db operations, but fell through because of cdc.. maybe another way to do ?
+    implementation platform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+
 //    implementation('io.debezium:debezium-quarkus-outbox-reactive:2.2.0-SNAPSHOT')
     implementation('io.quarkiverse.vault:quarkus-vault:3.0.0-SNAPSHOT')
 
     implementation 'io.quarkus:quarkus-hibernate-reactive'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
     implementation 'io.quarkus:quarkus-reactive-pg-client'
-    //non reactive db operations
-//    implementation("io.quarkus:quarkus-jdbc-postgresql")
-    implementation("io.quarkus:quarkus-narayana-jta")
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
     implementation 'io.quarkus:quarkus-grpc'
+    annotationProcessor("io.quarkus:quarkus-panache-common")
 
 //    implementation 'io.cdc:cdc-quarkus-outbox'
     implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-smallrye-reactive-messaging-kafka'
 
-    implementation 'io.quarkus:quarkus-arc'
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
