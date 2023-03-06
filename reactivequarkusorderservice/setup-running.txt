@@ -36,7 +36,7 @@ path "database/creds/mydbrole" {
 EOF
 
 
-to call, use postman and then for the create order method you use this as the message body:
+to call, use postman and then for the gRPC method CreateOrder you use this as the message body:
 
 {
 "customer_id": "exercitation pariatur",
