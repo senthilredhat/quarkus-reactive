@@ -49,15 +49,20 @@ To call, use postman and then for the gRPC method CreateOrder you use this as th
 }
 `
 
+Validate the order is created successfully.
+
 ## Change Credentials
 
-- Create User in Postgres and drop the old user
+- Create User in Postgres and invalidate the old user
   - `CREATE USER user2 WITH PASSWORD 'user2' SUPERUSER;`
-  - `drop user user1;`
+  - `alter user user1 valid until 'Jan 1 2023';`
 - Post new credentials to the app using the REST endpoint
   - `curl -v -X POST  -H 'Content-Type: application/json' http://localhost:8080/admin -d '{"password":"user2","user":"user2"}'`
 - Validate the new credentials are available in the credentials manager
   - `curl http://localhost:8080/admin`
 
 ## Replicate the Issue
-Access the Create Order gRPC service and notice we are getting an error. Quarkus is not calling the credentials manager to get the new credentials, it's using cached values. 
+- Wait for 5 minutes(just in-case) for quarkus to close pooled connections
+- Access the Create Order gRPC service and notice we are getting an error. Quarkus is not calling the credentials manager to get the new credentials, it's using cached values. 
+  - Sending a GRPC request will result in 
+    - `io.vertx.pgclient.PgException - FATAL: password authentication failed for user "user1" (28P01)`
