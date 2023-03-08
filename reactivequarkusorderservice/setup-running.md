@@ -2,10 +2,13 @@
 
 `docker run --rm=true --name postgres-quarkus-hibernate -d -e POSTGRES_USER=sarah -e POSTGRES_PASSWORD=connor -e POSTGRES_DB=mydatabase -p 5433:5432 postgres:13
 `
+
 Login to postgres 
+
 `podman exec -it postgres-quarkus-hibernate psql mydatabase sarah`
 
 Create User1
+
 `CREATE USER user1 WITH PASSWORD 'user1' SUPERUSER;`
 
 ## Start the app
@@ -13,7 +16,7 @@ Create User1
 
 
 ## Test GRPC Service
-to call, use postman and then for the gRPC method CreateOrder you use this as the message body:
+To call, use postman and then for the gRPC method CreateOrder you use this as the message body:
 
 `
 {
@@ -50,7 +53,6 @@ to call, use postman and then for the gRPC method CreateOrder you use this as th
 
 - Create User in Postgres and drop the old user
   - `CREATE USER user2 WITH PASSWORD 'user2' SUPERUSER;`
-- Drop Current user
   - `drop user user1;`
 - Post new credentials to the app using the REST endpoint
   - `curl -v -X POST  -H 'Content-Type: application/json' http://localhost:8080/admin -d '{"password":"user2","user":"user2"}'`
