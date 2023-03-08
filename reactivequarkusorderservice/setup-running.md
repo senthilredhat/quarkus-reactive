@@ -1,6 +1,6 @@
 ## Database Setup
 
-`docker run --rm=true --name postgres-quarkus-hibernate -d -e POSTGRES_USER=sarah -e POSTGRES_PASSWORD=connor -e POSTGRES_DB=mydatabase -p 5433:5432 postgres:13
+`docker run --rm=true --name postgres-quarkus-hibernate -d -e POSTGRES_USER=sarah -e POSTGRES_PASSWORD=connor -e POSTGRES_DB=mydatabase -p 5432:5432 postgres:13
 `
 
 Login to postgres 
